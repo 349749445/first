@@ -34,4 +34,11 @@ public class TestController {
 		logger.debug("****************trade0002******************");
 		return service.getById(id);
 	}
+
+	@RequestMapping("/trade0003")
+	@ResponseBody
+	public int trade0003(int id) throws Exception {
+		logger.debug("****************trade0003******************");
+		return service.addAge(id);
+	}
 }

@@ -10,6 +10,8 @@ public class Student implements Serializable {
     private String gender;
 
     private String no;
+    
+    private Integer age;
 
     private static final long serialVersionUID = 1L;
 
@@ -44,4 +46,13 @@ public class Student implements Serializable {
     public void setNo(String no) {
         this.no = no == null ? null : no.trim();
     }
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+    
 }

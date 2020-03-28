@@ -6,9 +6,10 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="gender" jdbcType="VARCHAR" property="gender" />
     <result column="no" jdbcType="VARCHAR" property="no" />
+    <result column="age" jdbcType="INTEGER" property="age" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, gender, no
+    id, name, gender, no, age
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -22,9 +23,9 @@
   </delete>
   <insert id="insert" parameterType="com.test.demo.student.model.Student">
     insert into student (id, name, gender, 
-      no)
+      no, age)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
-      #{no,jdbcType=VARCHAR})
+      #{no,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.test.demo.student.model.Student">
     insert into student
@@ -41,6 +42,9 @@
       <if test="no != null">
         no,
       </if>
+      <if test="age != null">
+        age,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -54,6 +58,9 @@
       </if>
       <if test="no != null">
         #{no,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -69,6 +76,9 @@
       <if test="no != null">
         no = #{no,jdbcType=VARCHAR},
       </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -76,7 +86,20 @@
     update student
     set name = #{name,jdbcType=VARCHAR},
       gender = #{gender,jdbcType=VARCHAR},
-      no = #{no,jdbcType=VARCHAR}
+      no = #{no,jdbcType=VARCHAR},
+      age = #{age,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectByPrimaryKeyAndLock" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from student
+    where id = #{id,jdbcType=INTEGER} for update
+  </select>
+  
+  <update id="addAge" parameterType="java.lang.Integer">
+    update student set age = age+1 where id = #{id,jdbcType=INTEGER}
+  </update>
+  
 </mapper>
