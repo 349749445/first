@@ -1,0 +1,2 @@
+2020-03-28 19:15:18.049  INFO 14576 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8002 (http) with context path ''
+2020-03-28 19:15:18.347  INFO 14576 --- [main] com.test.demo.TestspringApplication      : Started TestspringApplication in 24.534 seconds (JVM running for 29.319)
